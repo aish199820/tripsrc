@@ -1,0 +1,243 @@
+{% extends 'ToursApp/base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'ToursApp/CSS/booking.css' %}">
+
+<style>
+#userid{
+    margin: 10px;
+    text-align: left;
+    font-weight:bold;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;        
+}
+#contact{
+
+    
+    text-align: right;
+    text-align:left;
+}
+#card{
+    
+    margin-left: 100px;
+    padding-left: 100px;
+}
+
+
+#main{
+    background-image: url('/static/ToursApp/Images/joy2.jpeg');
+    height: 800px;
+
+}
+
+#heading{
+
+    color: black;
+    padding-top: 50px;
+    text-align: center;
+    text-shadow:black;
+    font-style:oblique ;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+
+#cardhead{
+
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#date{
+    font-weight: bold;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+#price{
+    
+    
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+#people{
+
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center; 
+    padding-left: 50px;
+    
+    
+}   
+
+#pay{
+ 
+    text-align: center;
+    padding-left: 150px;
+    padding-top: 25px;
+}
+</style>
+
+
+{% endblock css %}
+
+{% block js %}
+
+<script>
+
+function wanttobook() {
+
+var ch = confirm('Are you sure you want to book?');
+
+if (ch == true) {
+
+    return true;
+
+}
+
+else {
+
+    return false;
+};
+
+};
+
+</script>
+
+{% endblock js %}
+
+{% block title %}
+<title>Booking Page</title>
+{% endblock title %}
+
+
+{% block body %}
+<div id="main">
+<div class="container text-center">
+    
+    <h1 id="heading"><img src="{% static 'ToursApp/Images/diwali.gif' %}" height="70px" alt="">Book Now..Unknown lands await you..!<img src="{% static 'ToursApp/Images/diwali.gif' %}" height="70px" alt=""></h1>
+    <!-- card -->
+    <div class="row">
+
+        <div class="col-4" id="card">
+            <div class="card shadow-lg border m-5" style="width: 50rem;" >
+               
+                <div class="card-body">
+                    <h5 class="card-title" id="cardhead">{{data1.destination}} > {{data1.city}}</h5>
+                    <div class="card-text">
+
+                        <form action="{% url 'booking' %}" method="post" onsubmit="return wanttobook()">
+                            {% csrf_token %}
+
+
+                            <label for="id_bookid"></label>
+                            <input type="text" name="bookid" maxlength="100" value="{{book}}" hidden required
+                                id="id_bookid">
+
+
+
+                            <label for="id_tour_id"></label>
+                            <input type="text" name="tour_id" maxlength="100" value="{{data1.tour_id}}" hidden required
+                                id="id_tour_id">
+
+
+                            <div class="row">
+                            <div class="my-2 mt-0 m-5 text-start" id="userid">
+                                <label for="id_user_name">User Name</label>
+                                <input type="text" maxlength="100" value="{{data.username}}" disabled>
+                                <input type="text" name="user_name" maxlength="100" value="{{data.username}}" hidden
+                                    required id="id_user_name">
+                            
+
+                        
+
+                        
+
+                            <!-- <div class="my-2 mt-0 mb-5 pb-5 text-end" id="contact"> -->
+                                <label for="id_contact" class="mt-0">Contact Number</label>
+                                <input type="text" maxlength="100" value="{{data.contact}}" disabled>
+                                <input type="text" name="contact" maxlength="100" value="{{data.contact}}" hidden
+                                    required id="id_contact">
+                            <!-- </div> -->
+                        </div>
+                        </div>
+
+                            <div class="my-2" id="date">
+                                <label for="">{{data1.from_date}}</label>
+                                <label for="">---to---</label>
+                                <label for="">{{data1.from_date}}</label>
+                            </div>
+
+                            <div class="my-2">
+                                <label for="id_from_location">{{data1.from_location}}</label>
+                                <input type="text" name="from_location" value="{{data1.from_location}}" maxlength="100"
+                                    hidden required id="id_from_location">
+
+
+                                <label for="">---to---</label>
+
+                                <label for="id_to_location">{{data1.to_location}}</label>
+                                <input type="text" name="to_location" value="{{data1.to_location}}" maxlength="100"
+                                    hidden required id="id_to_location">
+                            </div>
+
+
+                            <div class=" m-5 text-start" id="price">
+                                <label for="id_price">Price: <i class="bi bi-currency-rupee"></i> {{Total_amount}}</label>
+                                <!-- <input type="number" value="{{Total_amount}}" disabled> -->
+                                <input type="number" name="price" value="{{Total_amount}}" hidden required
+                                    id="id_price">
+                            
+
+                          
+                            <!-- <div class="my-2 mb-0 text-end " id="price"> -->
+                                <label for="id_numdays" class="ms-5">Number of Days: {{data1.numdays}}</label>
+                                <!-- <input type="number" value="{{data1.numdays}}" disabled> -->
+                                <input type="number" name="numdays" value="{{data1.numdays}}" hidden required
+                                    id="id_numdays">
+                            <!-- </div> -->
+
+
+                            
+
+
+                            <!-- <div class="my-2 mt-0 ms-0  text-start" > -->
+                                <label for="id_people" id="people">people: {{people}}</label>
+                                <input type="text" name="people" value="{{people}}" hidden id="id_people">
+                                <!-- <input type="text" name="people" value="{{people}}" disabled id="id_people"> -->
+                            
+
+                            
+
+                             <!-- <div class="my-5" > -->
+                                <label for="id_payment_method" id="pay" >Payment_Method:</label>
+                                <input type="text" name="payment_method" maxlength="100" placeholder="Enter UPI id" required
+                                    id="id_payment_method">
+                            </div>
+
+                            <label for="id_status"></label>
+                            <input type="text" name="status" value="Active" maxlength="100" hidden required
+                                id="id_status">
+
+                            <!-- <button type="submit" class="btn btn-outline-warning text-dark">book</button> -->
+                            <input type="submit" class="btn btn-outline-warning text-dark" value="book">
+                            <button class="btn btn-outline-secondary"><a href="{% url 'destination' %}"
+                                    class="text-decoration-none text-dark">Cancel</a></button>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+            
+
+        </div>
+        
+    </div>
+
+    
+
+    
+
+
+
+    </div>
+</div>
+{% endblock body %}

@@ -1,0 +1,68 @@
+{% extends 'ToursApp/base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'ToursApp/CSS/register.css' %}">
+
+<style>
+    #maindiv{
+        margin-top: -30px;
+    background-image: url('/static/ToursApp/Images/gras.jfif');
+
+      
+}
+
+#formlabel{
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#reg{
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+</style>
+{% endblock css %}
+
+{% block js %}
+{% endblock js %}
+
+{% block title %}
+<title>Register Page</title>
+{% endblock title %}
+
+
+{% block body %}
+<div id="maindiv">
+<div class="container mt-5 p-5 shadow-lg" id="formdiv">
+
+    <form action="{% url 'register' %}" method="post" id="form">
+
+        {% csrf_token %}
+        <div class="text-center">
+        <img src="{% static 'ToursApp/Images/logo1.png' %}" class="shadow rounded-circle" height="200px" width="200px" alt="no image">
+        </div>
+        <div><p id="reg">Register Yourself..</p></div>
+
+        {% for fm in forms %}
+        <div class="mb-3" id="formlabel">
+            {{fm.label_tag}}
+            {{fm}}
+            <span style="color: red;">{{fm.errors | striptags}}</span>
+        </div>
+        {% endfor %}
+
+        <div class="mb-3 text-center">
+
+            <input type="submit" value="Register" class="btn btn-danger btn-lg">
+
+        </div>
+
+    </form>
+
+</div>
+</div>
+{% endblock body %}

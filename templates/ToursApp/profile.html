@@ -1,0 +1,54 @@
+{% extends 'ToursApp/base.html' %}
+{% load static %}
+
+{% block css %}
+
+{% endblock css %}
+
+{% block js %}
+{% endblock js %}
+
+{% block title %}
+<title>Register Page</title>
+{% endblock title %}
+
+
+{% block body %}
+<div>
+<div class="container shadow rounded-3">
+
+<form action="{% url 'profile' user.username %}" method="post">
+    {% csrf_token %}
+    <div class="text-dark my-3 pt-5">
+        <label for="id_username">Enter Username:</label>
+        <input type="text" name="username" class="form-control" value="{{user.username}}" hidden maxlength="100" required id="id_username">
+        <input type="text" class="form-control" value="{{user.username}}" disabled maxlength="100">
+
+        </div>
+        
+        <div class="text-dark my-3">
+        <label for="id_contact">Update Contact Number:</label>
+        <input type="text" name="contact" class="form-control" maxlength="100" placeholder="{{data.contact}}" required id="id_contact">
+        </div>
+        
+        <div class="text-dark my-3">
+        <label for="id_address">Update Your Address:</label>
+        <textarea name="address" cols="40" rows="10" class="form-control" placeholder="{{data.address}}" required id="id_address"></textarea>
+        </div>
+        
+        <div class="text-dark my-3">
+        <label for="id_email">Email-ID:</label>
+        <input type="email" name="email" value="{{user.email}}" class="form-control" maxlength="254" hidden required id="id_email">
+        <input type="email"  value="{{user.email}}" class="form-control" maxlength="254" disabled>
+        </div>
+        
+        <div class="container text-center mt-5 pb-5">
+            <button type="submit" class="btn btn-success">Submit</button>
+            <button class="btn btn-secondary"> <a href="{% url 'home' %}" class="text-decoration-none text-light"> Back </a></button>
+
+        </div>
+
+</form>
+</div>
+</div>
+{% endblock body %}

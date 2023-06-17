@@ -1,0 +1,59 @@
+{% extends 'ToursApp/base.html' %}
+{% load static %}
+
+{% block css %}
+<style>
+    #main{
+        background-image: url('/static/ToursApp/Images/bagr5.jpg');
+        height: 1000px;
+    }
+
+    #card{
+
+        margin-top: 20px;
+
+        
+    }
+</style>
+{% endblock css %}
+
+{% block js %}
+{% endblock js %}
+
+{% block title %}
+<title>user Queries</title>
+{% endblock title %}
+
+
+{% block body %}
+<div id="main">
+{% for d in data %}
+<div class="pt-3">
+    <div class="card mt-3 ms-5" style="width: 35rem;" id="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-6">
+                    <h5 class="card-title">{{d.name}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{d.email}}</h6>
+                    <p class="card-text">{{d.feedback}}</p>
+                </div>
+                <div class="col-6">
+                    <form action="{% url 'reply' d.id %}" method="post">
+                        {% csrf_token %}
+
+
+                        <label for="id_reply"></label>
+                        <textarea name="reply" cols="40" rows="10" class="form-control" placeholder="Reply to User" id="id_reply"></textarea>
+
+
+                        <input type="submit" value="Submit" class="btn btn-primary mt-3">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+</div>
+
+{% endblock body %}

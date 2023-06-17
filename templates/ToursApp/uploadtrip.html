@@ -1,0 +1,45 @@
+{% extends 'ToursApp/base.html' %}
+{% load static %}
+
+{% block css %}
+<style>
+    #form{
+        font-weight: bold;
+        padding: 28px;
+        margin: 20px;
+        color: white;
+        padding-top: 100px;
+    }
+
+    #main{
+        background-image: url('/static/ToursApp/Images/bagr5.jpg');
+        height: 1000px;
+    }
+</style>
+{% endblock css %}
+
+{% block js %}
+{% endblock js %}
+
+{% block title %}
+<title>upload</title>
+{% endblock title %}
+{% block body %}
+
+<div id="main">
+<div class="container shadow-lg mt-5">
+    <form action="{% url 'uploadtrip' %}" method="post" enctype="multipart/form-data"  id="form" class="m-5">
+        {% csrf_token %}
+{% for d in form %}
+
+{{d.label_tag}}
+{{d}}
+
+
+{% endfor %}
+
+<input type="submit" value="submit" class="btn btn-info mt-3 mb-3">
+</form>
+</div>
+</div>
+{% endblock body %}

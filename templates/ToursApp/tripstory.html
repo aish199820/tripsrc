@@ -1,0 +1,196 @@
+{% extends 'ToursApp/base.html' %}
+{% load static %}
+
+{% block css %}
+<style>
+    #admin {
+
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    #user {
+
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-weight: bold;
+        text-align: center;
+
+
+    }
+</style>
+{% endblock css %}
+
+{% block js %}
+{% endblock js %}
+
+{% block title %}
+<title>Trip Stories</title>
+{% endblock title %}
+
+
+{% block body %}
+<div>
+
+    {% if user.is_authenticated is False %}
+
+    <div class="row m-5">
+
+        <!-- admin -->
+        <div class="container col-6 border-end">
+            <div>
+                <h4 id="admin">Our Trips Have Touched Hearts...</h4>
+            </div>
+            <div class="row">
+                {% for d in data %}
+                <div class="col-4 my-3 rounded-3">
+                    <div class="card" style="width: 16rem;">
+                        <img src="{{d.image.url}}" class="card-img-top" alt="No image" width="100px" height="180px">
+                        <div class="card-body">
+                            <h5 class="card-title">{{d.username}}</h5>
+                            <div style="height:90px;width:230px;overflow:auto;scrollbar-base-color:gold;padding:10px;">
+
+                                <p class="card-text mb-5" id="divScroll">{{d.desc}}</p>
+                            </div>
+                            <p class="my-0">{{d.created_at}}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- user -->
+        <div class="container col-6 border-start">
+            <div>
+                <h4 id="user">❤️ What our happy travelers are saying...</h4>
+            </div>
+            <div class="row">
+
+                {% for i in data1 %}
+                <div class="col-4 my-3 rounded-3">
+                    <div class="card" style="width: 16rem;">
+                        <img src="{{i.image.url}}" class="card-img-top" alt="..." width="100px" height="180px">
+                        <div class="card-body">
+                            <h5 class="card-title">{{i.username}}</h5>
+                            <div style="height:90px;width:230px;overflow:auto;scrollbar-base-color:gold;padding:10px;">
+
+                                <p class="card-text mb-5" id="divScroll">{{i.desc}}</p>
+                            </div>
+                            <p class="my-0">{{i.created_at}}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+
+
+    {% else %}
+
+
+
+    <div class="row mx-5">
+        <div class="text-end mb-2"><button class="btn btn-warning text-decoration-none" type="button"
+                data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-journal-plus"></i> Add Your
+                Stories</button></div>
+
+
+
+        <!-- admin -->
+        <div class="container col-6 border-end">
+            <div>
+                <h4 id="admin">Our Trips Have Touched Hearts...</h4>
+            </div>
+            <div class="row">
+                {% for d in data %}
+                <div class="col-4 my-3 rounded-3">
+                    <div class="card" style="width: 16rem;">
+                        <img src="{{d.image.url}}" class="card-img-top" alt="No image" width="100px" height="180px">
+                        <div class="card-body">
+                            <h5 class="card-title">{{d.username}}</h5>
+                            <div style="height:90px;width:230px;overflow:auto;scrollbar-base-color:gold;padding:10px;">
+                                <p class="card-text mb-5" id="divScroll">{{d.desc}}</p>
+                            </div>
+                            <p class="my-0">{{d.created_at}}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- user -->
+        <div class="container col-6 border-start">
+            <div>
+                <h4 id="user">❤️ What our happy travelers are saying...</h4>
+            </div>
+
+            <div class="row">
+
+                {% for i in data1 %}
+                <div class="col-4 my-3 rounded-3">
+                    <div class="card" style="width: 16rem;">
+                        <img src="{{i.image.url}}" class="card-img-top" alt="..." width="100px" height="180px">
+                        <div class="card-body">
+                            <h5 class="card-title">{{i.username}}</h5>
+                            <div style="height:90px;width:230px;overflow:auto;scrollbar-base-color:gold;padding:10px;">
+
+                                <p class="card-text mb-5" id="divScroll">{{i.desc}}</p>
+                            </div>
+                            <p class="my-0">{{i.created_at}}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+
+
+
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-body">
+                        <form action="{% url 'tripstory' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <label for="id_storytype"></label>
+                            <input type="text" name="storytype" value="userstory" maxlength="100" hidden
+                                requiredid="id_storytype">
+
+                            <label for="id_username" class="p-3">Enter Your User Name:</label>
+                            <input type="text" name="username" value="" maxlength="100" required id="id_username">
+
+
+
+                            <label for="id_image" class="p-3">Upload Image:</label>
+                            <input type="file" name="image" accept="image/*" id="id_image">
+
+                            <label for="id_desc" class="p-3">Enter Descriptions:</label>
+                            <textarea name="desc" cols="40" rows="10" id="id_desc" class="ms-5"></textarea>
+                    </div>
+                    <div class="modal-footer" class="p-3">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    {% endif %}
+
+
+</div>
+{% endblock body %}

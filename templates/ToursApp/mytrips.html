@@ -1,0 +1,111 @@
+{% extends 'ToursApp/base.html' %}
+{% load static %}
+
+{% block css %}
+<style>
+    #main {
+        background-image: url('/static/ToursApp/Images/gras.jfif');
+        position:relative;
+        height: 2000px;
+        /* width: 2000px; */
+        /* margin-left: 5px; */
+        /* padding-left: 20px; */
+        top: -20%;
+    
+    }
+#heading{
+
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    padding: 300px;
+}
+ 
+
+
+    
+</style>
+{% endblock css %}
+
+{% block js %}
+<script>
+    function deletebook() {
+
+        var ch = confirm('Are you sure you want to cancel your booking?');
+
+        if (ch == true) {
+            alert('If You cancel this trip then You will be charged as per cancellation policy')
+
+            return true;
+
+        }
+
+        else {
+
+            return false;
+        };
+
+    };
+
+</script>
+{% endblock js %}
+
+{% block title %}
+<title>My Trips</title>
+{% endblock title %}
+
+{% block body %}
+
+<div id="main">
+
+    {% if data1 != userlogin %}
+
+    <div>
+        <h1 id="heading"><img src="{% static 'ToursApp/Images/sad1.gif' %}" alt=""> No previous history</h1>
+    </div>
+
+    {% else %}
+    <div class="row">
+        {% for d in data %}
+        <div class="col-5" id="fcol">
+            <div class="container" id="card">
+                <div class="card my-3 shadow rounded-3" style="width: 40rem;">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <h5 class="card-title">Booking id : {{d.bookid}}</h5>
+                                <p class="card-text">{{d.from_location}} ---to--- {{d.to_location}}</p>
+                                <p>Total price: {{d.price}}</p>
+                                <p>Number of People: {{d.people}}</p>
+
+                            </div>
+
+                            <div class="col-7" id="scol">
+                                <p class="fs-6">Created date : {{d.created_at}}</p>
+                                <!-- <a href="" class="btn btn-warning">View booking details</a> -->
+                                <!-- <a href="{% url 'cancelbook' d.bookid %}" class="btn btn-primary" onsubmit="return deleteblog()">Cancel Booking</a> -->
+                                <form action="{% url 'cancelbook' d.bookid %}" method="post"
+                                    style="display:inline-block" onsubmit="return deletebook()">
+                                    {% csrf_token %}
+                                    <input type="submit" value="Cancel Booking" class="btn btn-danger mt-5 ms-5">
+                                </form>
+                                
+                                <a href="{% url 'viewbooking' d.tour_id %}" class="btn btn-warning me-4 mt-5 text-decoration-none">View Details</a>
+                            </div>
+                                
+                            
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+</div>
+
+
+{% endblock body %}

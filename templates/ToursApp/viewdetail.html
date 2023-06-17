@@ -1,0 +1,310 @@
+{% extends 'ToursApp/base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'ToursApp/CSS/viewdetail.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+{% endblock css %}
+
+{% block js %}
+{% endblock js %}
+
+{% block title %}
+<title>Register Page</title>
+{% endblock title %}
+
+
+{% block body %}
+
+<div>
+    <div class="row">
+
+        <!-- left -->
+        <div class="col-8">
+            <div class="row mx-5 ">
+                <div class="card mb-3 ms-5 shadow">
+
+                    <!-- thumbnail image -->
+                    <a target="_blank" href="{{data.places.url}}">
+                    <img src="{{data.places.url}}" height="250px" class="card-img-top" alt="No image" id="image"></a>
+                        <!-- ---------------- -->
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{data.state}} > {{data.city}}</h5>
+
+                        <p><span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                        </p>
+
+
+
+                        <p class="card-text">{{data.place_info}}</p>
+                    </div>
+                </div>
+                <!-- package includes div -->
+                <div class="container row shadow ms-5">
+                    <p class="fs-5 fw-bold ms-2" id="packhead">Package includes</p>
+
+                    <div class="col-8 mx-2 mb-3">
+                        <img src="{% static 'ToursApp/Images/hotel.png' %}" class="me-2" alt="">
+                        <img src="{% static 'ToursApp/Images/flight.png' %}" class="me-2" alt="">
+                        <img src="{% static 'ToursApp/Images/trans.png' %}" class="me-2" alt="">
+                        <img src="{% static 'ToursApp/Images/meal.png' %}" class="me-2" alt="">
+                        <img src="{% static 'ToursApp/Images/sight.png' %}" class="me-2" alt="">
+                    </div>
+                </div>
+                <!-- ---------------- -->
+                <div class="container row shadow ms-5">
+                    <p class="fs-5 fw-bold m-3 pb-3 border-bottom" id="itheading">Itinerary (Day Wise)</p>
+
+                    <!-- day one -->
+
+                    <div class="col-3">
+                        <h5 class="ms-3">Day One</h5>
+                    </div>
+
+                    <div class="col-8 border-bottom mb-3 pb-4" id="itihead">
+
+                        {{data.day_one}}
+
+                    </div>
+
+                    <!-- day two -->
+                    <div class="col-3">
+                        <h5 class="ms-3">Day Two</h5>
+                    </div>
+
+                    <div class="col-8 border-bottom mb-3 pb-2" id="itihead">
+                        {{data.day_two}}
+                    </div>
+
+                    <!-- day three -->
+
+                    <div class="col-3">
+                        <h5 class="ms-3">Day Three</h5>
+                    </div>
+
+                    <div class="col-8 border-bottom mb-3 pb-2" id="itihead">
+                        {{data.day_three}}
+                    </div>
+                </div>
+
+                <!-- tour info div -->
+                <div class="container ms-5 my-5 shadow">
+                    <p class="fs-5 fw-bold ms-2 text-center" id="tourheading">Tour Information</p>
+                    <div class="row">
+
+                        <!-- inclusion section -->
+                        <div class="col-6">
+                            <p>
+                            <div class="row">
+                                <div class="text-center">
+                                    <p id="inclu">Inclusions</p>
+                                </div>
+                                <div class="col-1"><i class="bi bi-check-lg text-success me-2"></i></div>
+                                <div class="col-10">To and Fro economy class air ticket (Ex-Mumbai) with current airport
+                                    taxes.</div>
+                            </div>
+                            </p>
+
+                            <p>
+                            <div class="row">
+                                <div class="col-1"><i class="bi bi-check-lg text-success me-2"></i></div>
+                                <div class="col-10">Baggage Allowance as per the airline policy.</div>
+                            </div>
+                            </p>
+
+                            <p>
+                            <div class="row">
+                                <div class="col-1"><i class="bi bi-check-lg text-success me-2"></i></div>
+                                <div class="col-10">Travel by comfortable non A/C small vehicles.</div>
+                            </div>
+                            </p>
+
+                            <p>
+                            <div class="row">
+                                <div class="col-1"><i class="bi bi-check-lg text-success me-2"></i></div>
+                                <div class="col-10">Accommodation in comfortable hotels on twin/triple/Single sharing
+                                    basis.</div>
+                            </div>
+                            </p>
+
+                            <p>
+                            <div class="row">
+                                <div class="col-1"><i class="bi bi-check-lg text-success me-2"></i></div>
+                                <div class="col-10"> All Meals – Morning tea/coffee, breakfast, lunch, evening
+                                    tea/coffee with cookies/snacks, dinner and Water Bottle (1 Litre) per person per
+                                    day.</div>
+                            </div>
+                            </p>
+
+                        </div>
+
+                        <!-- exclusion section -->
+                        <div class="col-6">
+
+                            <p>
+                            <div class="row">
+                                <div class="text-center">
+                                    <p id="exclu">Exclusions</p>
+                                </div>
+                                <div class="col-1"><i class="bi bi-x-lg text-danger me-2"></i></div>
+                                <div class="col-10">Any increase in airfare, airport tax, fuel surcharge etc.</div>
+                            </div>
+                            </p>
+
+                            <p>
+                            <div class="row">
+                                <div class="col-1"><i class="bi bi-x-lg text-danger me-2"></i></div>
+                                <div class="col-10"> Cost of Insurance</div>
+                            </div>
+                            </p>
+
+
+                            <p>
+                            <div class="row">
+                                <div class="col-1"><i class="bi bi-x-lg text-danger me-2"></i></div>
+                                <div class="col-10">Personal expense like porterage, laundry, telephone, shopping,
+                                    alcoholic beverages, extra mineral water or food which is not a part of group’s set
+                                    meal menu</div>
+                            </div>
+                            </p>
+
+
+                            <p>
+                            <div class="row">
+                                <div class="col-1"><i class="bi bi-x-lg text-danger me-2"></i></div>
+                                <div class="col-10">Any extra cost incurred due to illness, accident, hospitalization or
+                                    any personal emergency</div>
+                            </div>
+                            </p>
+
+
+                            <p>
+                            <div class="row">
+                                <div class="col-1"><i class="bi bi-x-lg text-danger me-2"></i></div>
+                                <div class="col-10">Anything specifically not mentioned in the ‘tour price includes’
+                                    column</div>
+                            </div>
+                            </p>
+
+
+                        </div>
+
+                    </div>
+                </div>
+                <!-- ------------------- -->
+
+                <div class="container ms-5 shadow pb-4" id="cancelp">
+                    <p id="cancelpolicyhead">Cancellation Policy</p>
+                    <div>{{data.cancel_policy}}</div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- right section of card -->
+
+        <div class="col-4">
+
+            <div class="card shadow" style="width: 18rem;">
+                <!-- <img src="..." class="card-img-top" alt="..."> -->
+                <div class="card-body">
+                    <p id="depart">Departure City </p>
+                    <h5 class="card-title">{{data.from_location}}</h5>
+                    <p class="card-text">
+                    <div class="row text-light" id="fromto">
+                        <!-- col 1 -->
+                        <div class="col-4" id="fromdiv">
+                            <p id="fromloc">{{data.from_location}}</p>
+                            <p id="fromdate">{{data.from_date}}</p>
+                        </div>
+
+                        ------to------
+                        <!-- col 2 -->
+
+
+                        <div class="col-4 text-end" id="fromdiv">
+                            <p id="fromloc">{{data.to_location}}</p>
+                            <p id="fromdate">{{data.to_date}}</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p id="numday">{{data.numdays}}Days</p>
+                        </p>
+                        <p id="meet">Meet Time- {{data.meet_time}}</p>
+                        <p id="pricehead">super deal price</p>
+                        <p class="fw-bold" id="price"><i class="bi bi-currency-rupee">{{data.price}} /-</i></p>
+                        <p id="perperson">*per person on sharing basis</p>
+                    </div>
+                    <!-- form  -->
+                    <div>
+                        <form action="{% url 'viewdetail' data.tour_id %}" method="post">
+                            {% csrf_token %}
+
+                            <div>
+                                <label for="id_bookid"></label>
+                                <input type="text" name="bookid" value="{{book_id}}" hidden required id="id_bookid">
+
+                                <label for="id_tour_id"></label>
+                                <input type="text" name="tour_id" value="{{data.tour_id}}" hidden required
+                                    id="id_tour_id">
+
+                                <label for="id_user_name"></label>
+                                <input type="text" name="user_name" value="{{userdata.username}}" hidden required
+                                    id="id_user_name">
+
+                                <label for="id_contact"></label>
+                                <input type="text" name="contact" value="{{userdata.contact}}" hidden required
+                                    id="id_contact">
+
+                                <label for="id_from_location"></label>
+                                <input type="text" name="from_location" value="{{data.from_location}}" hidden required
+                                    id="id_from_location">
+
+                                <label for="id_to_location"></label>
+                                <input type="text" name="to_location" value="{{data.to_location}}" hidden required
+                                    id="id_to_location">
+
+                                <label for="id_price"></label>
+                                <input type="text" name="price" value="{{data.price}}" hidden required id="id_price">
+
+                                <label for="id_numdays"></label>
+                                <input type="text" name="numdays" value="{{data.numdays}}" hidden required
+                                    id="id_numdays">
+
+                                <label for="id_status"></label>
+                                <input type="text" name="status" value="Active" hidden required id="id_status">
+
+                                <label for="id_people"></label>
+                                <input type="number" name="people" class="form-control IntegerField mb-3" min="1"
+                                    max="10" oninput="validity.valid||(value='1');" placeholder="No. of people" required
+                                    id="id_people">
+
+
+                            </div>
+
+
+                            <button type="submit" class="btn btn-outline-warning text-dark">book</button>
+                            <button class="btn btn-outline-secondary"><a href="{% url 'destination' %}"
+                                    class="text-decoration-none text-dark">Cancel</a></button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+        <!-- -------------------- -->
+    </div>
+</div>
+{% endblock body %}

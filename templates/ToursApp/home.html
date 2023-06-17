@@ -1,0 +1,170 @@
+{% extends 'ToursApp/base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'ToursApp/CSS/home.css' %}">
+
+{% endblock css %}
+
+{% block js %}
+
+{% endblock js %}
+
+{% block title %}
+<title>Home</title>
+{% endblock title %}
+
+
+{% block body %}
+
+
+<!-- video carousel------------------------------------------------------------------------------------------------ -->
+
+
+<div id="carouselExampleIndicators" class="carousel slide text-center" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+      aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+      aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+      aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
+      aria-label="Slide 4"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4"
+      aria-label="Slide 4"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <video class="img-fluid" autoplay loop muted width="1250">
+        <source src="{% static 'ToursApp/Videos/V1_Trim.mp4' %}" type="video/mp4" />
+      </video>
+    </div>
+    <div class="carousel-item">
+      <video class="img-fluid" autoplay loop muted width="1250">
+        <source src="{% static 'ToursApp/Videos/wei4.mp4' %}" type="video/mp4" />
+      </video>
+    </div>
+    <div class="carousel-item">
+      <video class="img-fluid" autoplay loop muted width="1250">
+        <source src="{% static 'ToursApp/Videos/wid1.mp4' %}" type="video/mp4" />
+      </video>
+    </div>
+    <div class="carousel-item">
+      <video class="img-fluid" autoplay loop muted width="1250">
+        <source src="{% static 'ToursApp/Videos/wei3.mp4' %}" type="video/mp4" />
+      </video>
+    </div>
+    <div class="carousel-item">
+      <video class="img-fluid" autoplay loop muted width="1250">
+        <source src="{% static 'ToursApp/Videos/v2.mp4' %}" type="video/mp4" />
+      </video>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+
+
+
+<!-- Carousel wrapper -->
+
+
+
+
+<!-- row and column division ------------------------------------------------------------------------------------------------------------->
+<!-- accomodation and other -->
+<div class="container text-center my-3" id="accomodation">
+  <p>
+  <h1 class="text-center" id="MainHeading"><img src="{% static 'ToursApp/Images/diwali.gif' %}" height="70px" alt="">All
+    Inclusive Tours, Make it happen, let’s explore together <img src="{% static 'ToursApp/Images/diwali.gif' %}"
+      height="70px" alt=""></h1>
+  </p>
+  <div class="row border-bottom">
+    <!-- column 1 -->
+    <div class="col-4">
+      <div class="container text-center m-4">
+        <img src="{% static 'ToursApp/Images/accom.svg' %}" alt="" class="text-center">
+        <p class="lead text-center">Accommodation</p>
+        <p class="text-center">Comfortable & convenient hotels cherry picked by our hotel management team</p>
+      </div>
+      <div class="container text-center m-4">
+        <img src="{% static 'ToursApp/Images/tour.svg' %}" alt="" class="text-center">
+        <p class="lead text-center">Tour managers</p>
+        <p class="text-center">We have an exclusive team of tour managers specialising in India</p>
+      </div>
+    </div>
+    <!-- column 2 -->
+
+    <div class="col-4">
+      <div class="container text-center m-4">
+        <img src="{% static 'ToursApp/Images/meals.svg' %}" alt="" class="text-center">
+        <p class="lead text-center">All meals</p>
+        <p class="text-center">Eat to your heart's content Breakfast. Lunch. Dinner.</p>
+      </div>
+      <div class="container text-center m-4">
+        <img src="{% static 'ToursApp/Images/iti.svg' %}" alt="" class="text-center">
+        <p class="lead text-center">Best value itinerary</p>
+        <p class="text-center">Our dedicated product & destination research team spends hours curating the best value
+          for money itineraries</p>
+      </div>
+    </div>
+
+    <!-- column 3 -->
+
+    <div class="col-4">
+
+      <div class="container text-center m-4">
+        <img src="{% static 'ToursApp/Images/trans.svg' %}" alt="" class="text-center">
+        <p class="lead text-center">On-tour transport</p>
+        <p class="text-center">Our itineraries include all rail, sea and road transport as part of the itinerary so you
+          can enjoy tension free</p>
+      </div>
+      <div class="container text-center m-4">
+        <img src="{% static 'ToursApp/Images/fare.svg' %}" alt="" class="text-center">
+        <p class="lead text-center">To and fro airfare</p>
+        <p class="text-center">tours are inclusive of airfare from many hubs within India unless you pick the
+          joining-leaving option</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- package division --------------------------------------------------------------------------------------------------------------------->
+
+  <!-- card -->
+
+
+  <div class="m-4 row">
+
+    <div class="display-5 mb-3 text-center" id="packhead">
+      <h1 id="packagehead">Our Exciting Packages</h1>
+    </div>
+
+    {% for d in data1 %}
+    <div class="container text-center col-3">
+      <div class="card" style="width: 18rem;">
+        <img src="{{d.places.url}}" class="card-img-top" alt="No Image" height="200px">
+        <div class="card-body">
+          <h5 class="card-title">{{d.city}}</h5>
+          <div style="height:200px;width:250px;overflow:auto;scrollbar-base-color:gold;padding:10px;">
+            <p id="divScroll" class="card-text">{{d.place_info}}</p>
+          </div>
+          <a href="{% url 'viewdetail' d.tour_id %}" class="btn btn-warning mt-3">View Package</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+
+
+{% endblock body %}

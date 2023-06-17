@@ -1,0 +1,110 @@
+{% extends 'ToursApp/base.html' %}
+{% load static %}
+
+{% block css %}
+<style>
+    #main {
+
+        height: 650px;
+        position: relative;
+    }
+
+    #divhead{
+        background-image: url('/static/ToursApp/Images/contact.webp');
+
+        box-shadow: 8px white;
+        color: white;
+        padding: 50px;
+        width:1200px;
+        height: 700px;
+    }
+
+    #form{
+        margin-top: 50px;
+        margin-left: 150px;
+        padding-left: 150px;
+        width: 600px;
+        
+    }
+
+    #label{
+
+        padding: 5px;
+        margin: 5px;
+    }
+
+</style>
+
+{% endblock css %}
+
+{% block js %}
+{% endblock js %}
+
+{% block title %}
+<title>Contact Us</title>
+{% endblock title %}
+
+
+{% block body %}
+
+<div id="main">
+    <div class="container" id="divhead">
+        {% if user.is_authenticated is False %}
+        <form action="{% url 'contactus' %}" method="post" id="form" class="shadow-lg rounded-3">
+            {% csrf_token %}
+
+
+            <label for="id_name" id="label">Enter Your Name:</label>
+            <input type="text" name="name" class="form-control" maxlength="100" required id="id_name">
+
+
+            <label for="id_email" id="label">Enter Your Email:</label>
+            <input type="email" name="email" class="form-control" maxlength="254" required id="id_email">
+
+
+            <label for="id_feedback" id="label">Enter Your Feedback Or any Query:</label>
+            <textarea name="feedback" cols="40" rows="10" class="form-control" required id="id_feedback"></textarea>
+
+
+            <label for="id_reply" id="label"></label>
+            <textarea name="reply" cols="40" rows="10" class="form-control" hidden id="id_reply"></textarea>
+
+
+            <div class="text-center">
+            <input type="submit" value="Submit" class="btn btn-primary">
+        </div>
+        </form>
+    </div>
+
+    {% else %}
+    <div class="container" id="divhead">
+        <form action="{% url 'contactus' %}" method="post" class="shadow-lg rounded-3">
+
+            {% csrf_token %}
+
+            <label for="id_name" id="label">Enter Your Name:</label>
+            <input type="text" name="name" value="{{user.username}}" class="form-control" maxlength="100" required
+                id="id_name" hidden>
+            <input type="text" value="{{user.username}}" class="form-control" maxlength="100" disabled>
+
+
+            <label for="id_email" id="label">Enter Your Email:</label>
+            <input type="email" name="email" value="{{user.email}}" class="form-control" maxlength="254" required
+                id="id_email" hidden>
+            <input type="email" value="{{user.email}}" class="form-control" maxlength="100" disabled>
+
+            <label for="id_feedback" id="label">Enter Your Feedback Or any Query:</label>
+            <textarea name="feedback" cols="40" rows="10" class="form-control" id="id_feedback"></textarea>
+
+            <label for="id_reply" id="label"></label>
+            <textarea name="reply" cols="40" rows="10" class="form-control" hidden id="id_reply"></textarea>
+
+            <div class="text-center">
+            <input type="submit" value="Submit" class="btn btn-primary">
+        </div>
+        </form>
+    </div>
+
+    {% endif %}
+</div>
+{% endblock body %}

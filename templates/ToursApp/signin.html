@@ -1,0 +1,78 @@
+{% extends 'ToursApp/base.html' %}
+{% load static %}
+
+{% block css %}
+<style>
+    #main{
+        background-image: url('/static/ToursApp/Images/joy2.jpeg');
+        height: 1000px;
+    }
+#container{
+    width: 500px;
+    margin-top: 150px;
+}
+#welcome{
+
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size:30px;
+    font-weight: bolder;
+}
+#besttrip{
+    margin-top: -20px;
+    margin-left: 100px;
+    font-size:large;
+}
+
+#login{
+
+    font-family:'Times New Roman', Times, serif;
+    font-size:25px;
+    font-weight: bold;
+}
+</style>
+
+{% endblock css %}
+
+{% block js %}
+{% endblock js %}
+
+{% block title %}
+<title>Login Page</title>
+{% endblock title %}
+
+
+{% block body %}
+
+<!-- login division -->
+<div id="main">
+<div class="container" id="div">
+    <p id="welcome">Welcome, Guest..!</p>
+    <div><p id="besttrip"> The best trips start here....</p></div>
+    
+<div class="container">
+    <form action="{% url 'signin' %}" method="post" id="form">
+        {% csrf_token %}
+
+        <!-- widget come from backend -->
+        <div class="container" id="container">
+            <p id="login">Login Now..</p>
+        {% for fm in forms %}
+        <div class="mb-3">
+
+            {{fm.label_tag}}
+            {{fm}}
+            <span style="color: red;">{{fm.errors}} </span>
+        </div>
+
+        {% endfor %}
+    </div>
+        <div class="mb-3 text-center">
+
+            <input type="submit" value="Log In" class="btn btn-primary">
+        </div>
+
+    </form>
+</div>
+</div>
+</div>
+{% endblock body %}

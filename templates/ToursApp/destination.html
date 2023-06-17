@@ -1,0 +1,89 @@
+{% extends 'ToursApp/base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'ToursApp/CSS/destination.css' %}">
+
+<style>
+    
+#dest{
+
+font-weight: bold;
+font-family:'Times New Roman', Times, serif;
+}
+
+#desthead{
+
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size: x-large;
+}
+</style>
+{% endblock css %}
+
+{% block js %}
+{% endblock js %}
+
+{% block title %}
+<title>Home</title>
+{% endblock title %}
+
+<!-- f5f5f5 -->
+{% block body %}
+
+<div class="container">
+    <div class="row my-4">
+        <div class="col-3 my-3 ">
+            <div class="rounded-circle text-center mb-3">
+                <img src="{% static 'ToursApp/Images/logo1.png' %}" height="70px" width="130px" alt=""
+                    class="rounded-circle">
+            </div>
+            <div class="list-group">
+                <a href="{% url 'destination' %}" class="list-group-item list-group-item-action fw-bold text-center" tabindex="-1"
+                    aria-disabled="true" id="desthead">Destinations</a>
+                {% for d in data %}
+                <a href="{% url 'state' d.destination %}" class="list-group-item list-group-item-action" id="dest">
+                    {{d.destination}}
+                </a>
+                {% endfor %}
+            </div>
+
+        </div>
+
+        <div class="col-8 border-start">
+            <div class="mx-1 row">
+
+                {% for d in data1 %}
+                <div class="card mb-3" style="max-width: 940px;">
+                    <div class="row g-0">
+                        <div class="col-4">
+                            <img src="{{d.places.url}}" class="img-fluid rounded-start" alt="No Image">
+                        </div>
+                        <div class="col-8">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-9">
+                                        <h5 class="card-title">{{d.city}} </h5>
+                                        <p class="fs-6">{{d.numdays}} Days</p>
+                                        <img src="{% static 'ToursApp/Images/card.png' %}"
+                                            class="img-fluid rounded-start" alt="No Image" width="350px">
+                                            <p class="fs-6 fw-lighter mt-1"><i class="bi bi-geo-alt-fill"></i>{{d.from_location}}....<i class="bi bi-geo-alt-fill"></i>{{d.city}}....<i class="bi bi-geo-alt-fill"></i>{{d.to_location}}</p>
+                                    </div>
+                                    <div class="col-3 mt-2">
+                                        <!-- <p class="fs-6 fw-lighter">Super deal price</p> -->
+                                        <p class="text-right" id="pricehead">super deal price</p>
+                                        <p class="fw-bold"><i class="bi bi-currency-rupee">{{d.price}} /-</i></p>
+                                        <h6><a href="{% url 'viewdetail' d.tour_id %}" class="btn btn-warning btn-sm">View Details</a></h6>
+                                        <h6><a href="{% url 'contactus' %}" class="btn btn-outline-secondary btn-sm">Enquiry</a></h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

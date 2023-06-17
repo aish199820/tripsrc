@@ -1,0 +1,209 @@
+{% extends 'ToursApp/base.html' %}
+{% load static %}
+
+{% block css %}
+
+<style>
+    #inclu{
+    display: inline-block;
+    font-weight: bold;
+    border: 2px black solid;
+    border-color: green;
+    border-radius: 5px;
+    padding: 5px;
+    
+}
+
+#exclu{
+    display: inline-block;
+    font-weight: bold;
+    border: 2px black solid;
+    border-color:red;
+    border-radius: 5px;
+    padding: 5px;
+}
+#itihead{
+    
+    border-left: 2px dashed grey;
+    padding-left: 60px;
+}
+</style>
+
+{% endblock css %}
+
+{% block js %}
+
+{% endblock js %}
+
+{% block title %}
+<title>Home</title>
+{% endblock title %}
+
+
+{% block body %}
+
+
+<div class="container">
+    <div class="text-end"><a href="{% url 'mytrips' %}" class="btn btn-lg text-decoration-none text-dark"><i class="bi bi-arrow-left-circle"></i></a></div>
+    {% for d in data %}
+    <h5 class="card-title">{{d.state}} > {{d.city}}</h5>
+
+    <div class="row">
+        <a target="_blank" href="{{d.places.url}}">
+            <img src="{{d.places.url}}" height="450px" class="card-img-top" alt="No image" id="image"></a>           
+
+    <div class="container row shadow ms-1">
+        <p class="fs-5 fw-bold m-3 pb-3 border-bottom" id="itheading">Itinerary (Day Wise)</p>
+
+        <!-- day one -->
+
+        <div class="col-3">
+            <h5 class="ms-3">Day One</h5>
+        </div>
+
+        <div class="col-8 border-bottom mb-3 pb-4" id="itihead">
+
+            {{d.day_one}}
+
+        </div>
+
+        <!-- day two -->
+        <div class="col-3">
+            <h5 class="ms-3">Day Two</h5>
+        </div>
+
+        <div class="col-8 border-bottom mb-3 pb-2" id="itihead">
+            {{d.day_two}}
+        </div>
+
+        <!-- day three -->
+
+        <div class="col-3">
+            <h5 class="ms-3">Day Three</h5>
+        </div>
+
+        <div class="col-8 border-bottom mb-3 pb-2" id="itihead">
+            {{d.day_three}}
+        </div>
+    </div>
+
+
+      <!-- tour info div -->
+      <div class="container ms-1 my-5 shadow">
+        <p class="fs-5 fw-bold ms-2 text-center" id="tourheading">Tour Information</p>
+        <div class="row">
+
+            <!-- inclusion section -->
+            <div class="col-6">
+                <p>
+                <div class="row">
+                    <div class="text-center">
+                        <p id="inclu">Inclusions</p>
+                    </div>
+                    <div class="col-1"><i class="bi bi-check-lg text-success me-2"></i></div>
+                    <div class="col-10">To and Fro economy class air ticket (Ex-Mumbai) with current airport
+                        taxes.</div>
+                </div>
+                </p>
+
+                <p>
+                <div class="row">
+                    <div class="col-1"><i class="bi bi-check-lg text-success me-2"></i></div>
+                    <div class="col-10">Baggage Allowance as per the airline policy.</div>
+                </div>
+                </p>
+
+                <p>
+                <div class="row">
+                    <div class="col-1"><i class="bi bi-check-lg text-success me-2"></i></div>
+                    <div class="col-10">Travel by comfortable non A/C small vehicles.</div>
+                </div>
+                </p>
+
+                <p>
+                <div class="row">
+                    <div class="col-1"><i class="bi bi-check-lg text-success me-2"></i></div>
+                    <div class="col-10">Accommodation in comfortable hotels on twin/triple/Single sharing
+                        basis.</div>
+                </div>
+                </p>
+
+                <p>
+                <div class="row">
+                    <div class="col-1"><i class="bi bi-check-lg text-success me-2"></i></div>
+                    <div class="col-10"> All Meals – Morning tea/coffee, breakfast, lunch, evening
+                        tea/coffee with cookies/snacks, dinner and Water Bottle (1 Litre) per person per
+                        day.</div>
+                </div>
+                </p>
+
+            </div>
+
+            <!-- exclusion section -->
+            <div class="col-6">
+
+                <p>
+                <div class="row">
+                    <div class="text-center">
+                        <p id="exclu">Exclusions</p>
+                    </div>
+                    <div class="col-1"><i class="bi bi-x-lg text-danger me-2"></i></div>
+                    <div class="col-10">Any increase in airfare, airport tax, fuel surcharge etc.</div>
+                </div>
+                </p>
+
+                <p>
+                <div class="row">
+                    <div class="col-1"><i class="bi bi-x-lg text-danger me-2"></i></div>
+                    <div class="col-10"> Cost of Insurance</div>
+                </div>
+                </p>
+
+
+                <p>
+                <div class="row">
+                    <div class="col-1"><i class="bi bi-x-lg text-danger me-2"></i></div>
+                    <div class="col-10">Personal expense like porterage, laundry, telephone, shopping,
+                        alcoholic beverages, extra mineral water or food which is not a part of group’s set
+                        meal menu</div>
+                </div>
+                </p>
+
+
+                <p>
+                <div class="row">
+                    <div class="col-1"><i class="bi bi-x-lg text-danger me-2"></i></div>
+                    <div class="col-10">Any extra cost incurred due to illness, accident, hospitalization or
+                        any personal emergency</div>
+                </div>
+                </p>
+
+
+                <p>
+                <div class="row">
+                    <div class="col-1"><i class="bi bi-x-lg text-danger me-2"></i></div>
+                    <div class="col-10">Anything specifically not mentioned in the ‘tour price includes’
+                        column</div>
+                </div>
+                </p>
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container ms-1 mb-5 shadow pb-4" id="cancelp">
+        <p id="cancelpolicyhead">Cancellation Policy</p>
+        <div>{{d.cancel_policy}}</div>
+    </div>
+
+</div>
+
+    {% endfor %}
+
+
+
+
+</div>
+{% endblock body %}
