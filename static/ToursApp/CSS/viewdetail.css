@@ -1,0 +1,145 @@
+.checked {
+    color: orange;
+  }
+
+
+
+
+#packhead{
+
+     font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+#itheading{
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+#tourheading{
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+#itihead{
+    
+    border-left: 2px dashed grey;
+    padding-left: 60px;
+}
+
+
+
+#inclu{
+    display: inline-block;
+    font-weight: bold;
+    border: 2px black solid;
+    border-color: green;
+    border-radius: 5px;
+    padding: 5px;
+    
+}
+
+#exclu{
+    display: inline-block;
+    font-weight: bold;
+    border: 2px black solid;
+    border-color:red;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+/* cancellation policy css */
+
+#cancelp{
+
+    margin-top: -10px;
+}
+
+#cancelpolicyhead{
+
+    font-size:large;
+    font-weight: bolder;
+    text-align: center;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+
+/* right side card css */
+
+#depart{
+
+    font-size: small;
+    margin:-5px;
+    margin-bottom: 5px;
+}
+
+#fromto{
+    background-color:grey;
+}
+
+
+#fromdiv{
+
+    background-color:gray;
+
+}
+
+#fromloc{
+
+    font-size: x-small;
+    font-weight:bold;
+    margin-bottom: -3px;
+    color: white;
+}
+
+#fromdate{
+
+    font-size: x-small;
+    color: white;
+    margin-bottom: -1px;
+
+}
+
+#numday{
+
+    font-size: small;
+    font-weight: bold;
+    text-align: center;
+}
+
+#meet{
+
+    font-size: small;
+    font-weight: bold;
+}
+
+#pricehead{
+    display: inline-block;
+    border: 1px solid #FE7200;
+    font-size: small;
+    font-weight: bold;
+    color: #FE7200;
+    margin: 2px;
+    padding:4px;
+    
+}   
+
+#perperson{
+    font-weight: lighter;
+    font-size:small;
+    margin-top: -20px;
+}
+
+
+
+
+
+#image{
+
+    /* border: 1px solid #ddd; Gray border */
+  /* border-radius: 4px;  Rounded border */
+  padding: 5px; /* Some padding */
+  width: 1000px; /* Set a small width */
+}
+
+/* Add a hover effect (blue shadow) */
+img:hover {
+  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
